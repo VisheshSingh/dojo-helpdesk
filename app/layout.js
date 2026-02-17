@@ -12,8 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <Navbar />
-      <body className={rubik.className}>{children}</body>
+      <body className={rubik.className}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
