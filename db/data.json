@@ -1,0 +1,25 @@
+{
+  "tickets": [
+    {
+      "id": 1,
+      "title": "Fix footer alignment issue",
+      "description": "The footer on the homepage is not aligned properly. It appears to be shifted to the left and does not span the full width of the page. This issue is present on both desktop and mobile devices.",
+      "priority": "low",
+      "user_email": "mario@dojohelpdesk.com"
+    },
+    {
+      "id": 2,
+      "title": "Image upload error",
+      "description": "When I try to upload an image to the profile section, I receive an error message that says 'Image upload failed'. This issue occurs with all image formats and sizes.",
+      "priority": "medium",
+      "user_email": "luigi@dojohelpdesk.com"
+    },
+    {
+      "id": 3,
+      "title": "Form submission not working",
+      "description": "When I try to submit a form, it fails and shows an error message. This happens on all forms across the application.",
+      "priority": "high",
+      "user_email": "toad@dojohelpdesk.com"
+    }
+  ]
+}
