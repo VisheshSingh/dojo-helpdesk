@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 export async function generateStaticParams() {
   const res = await fetch('http://localhost:4000/tickets');
   const tickets = await res.json();
@@ -13,7 +15,7 @@ async function getTicket(id) {
     });
     console.log('API response status:', res.status);
     if (!res.ok) {
-      throw new Error(`API returned ${res.status}`);
+      notFound();
     }
     return res.json();
   } catch (error) {
