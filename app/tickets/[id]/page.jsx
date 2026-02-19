@@ -6,9 +6,39 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Ticket({ params }) {
-  const res = await fetch(`http://localhost:4000/tickets/${params.id}`);
-  const ticket = await res.json();
+async function getTicket(id) {
+  try {
+    const res = await fetch(`http://localhost:4000/tickets/${id}`, {
+      next: { revalidate: 30 },
+    });
+    console.log('API response status:', res.status);
+    if (!res.ok) {
+      throw new Error(`API returned ${res.status}`);
+    }
+    return res.json();
+  } catch (error) {
+    console.error('Failed to fetch ticket:', error);
+    throw error;
+  }
+}
 
-  return <div>{ticket.title}</div>;
+export default async function TicketDetails(props) {
+  const params = await props.params;
+  const ticket = await getTicket(params.id);
+
+  return (
+    <main>
+      <nav>
+        <h2>Ticket details</h2>
+      </nav>
+      <div className='card my-5'>
+        <h3>{ticket.title}</h3>
+        <small>Created by {ticket.user_email}</small>
+        <p>{ticket.description}</p>
+        <div className={`pill ${ticket.priority}`}>
+          {ticket.priority} priority
+        </div>
+      </div>
+    </main>
+  );
 }
