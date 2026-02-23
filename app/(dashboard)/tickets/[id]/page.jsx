@@ -16,7 +16,7 @@ async function getTicket(id) {
     });
     console.log('API response status:', res.status);
     if (!res.ok) {
-      notFound();
+      return notFound();
     }
     return res.json();
   } catch (error) {
